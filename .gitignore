@@ -73,3 +73,15 @@ docs/*
 # Historical planning notes at the repository root are not release files.
 *_2026*.md
 PAPER_EXPERIMENT_HANDOVER*.md
+
+# Release allow-list guard. The files already tracked under scripts/ and tests/
+# are the curated public set; every other local script, test, configuration
+# (hyperparameters), schema, and fact sheet stays out so a broad `git add .`
+# cannot publish private experiment, audit, or parameter files. Already
+# tracked files are unaffected by these directory rules; add any new public
+# file deliberately with `git add -f`.
+configs/
+schemas/
+project_fact_sheet.md
+scripts/*
+tests/*
