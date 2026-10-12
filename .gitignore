@@ -1,0 +1,75 @@
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+data/raw/
+data/interim/
+data/processed/
+models/checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.onnx
+wandb/
+mlruns/
+
+# Local datasets, feature caches and generated training artifacts.
+data/
+output/
+.experiments/
+tmp/
+*.parquet
+*.npz
+*.npy
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.bin
+*.safetensors
+*.joblib
+*.arrow
+*.feather
+
+# Experiment logs, generated reports, tables and figures.
+reports/
+figures/
+tables/
+*.log
+*.err
+*_out.txt
+*_run.txt
+_*.txt
+
+# Local manuscript and literature collections are not part of the code release.
+manuscript/
+literature/
+references/
+.paper/
+.research/
+.coord/
+.ai/
+.project/
+src/reused/
+scripts/reused/
+configs/experiments/
+
+# Local credentials and environment files.
+*账密*
+*.pem
+*.key
+.env
+.env.*
+
+# Keep only the small, public-facing documentation explicitly allow-listed below.
+docs/*
+!docs/PUBLIC_DATASET_OVERVIEW.md
+!docs/PUBLICATION_PACKAGE.md
+
+# Historical planning notes at the repository root are not release files.
+*_2026*.md
+PAPER_EXPERIMENT_HANDOVER*.md
