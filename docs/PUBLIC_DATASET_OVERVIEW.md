@@ -75,3 +75,10 @@ labels. A latent future mode is a trajectory hypothesis, not an automatically
 interpretable intent class. Any semantic labels used in a downstream study
 must be documented as an optional extension and must not leak future data into
 the history-only task.
+
+## Supplementary materials
+
+The repository additionally provides the optimization settings and additional
+stratified results under `supplementary/`. These are summary tables and
+configuration documentation; they do not contain the dataset, generated
+samples, or checkpoints.
