@@ -1,0 +1,60 @@
+{
+  "protocol_id": "eatraj-final-warmstart-joint-s17",
+  "description": "Optimization and model settings for the final EATraj (Stage-2 warm-start joint) model reported in the manuscript.",
+  "data": {
+    "dataset_interface": "data/trajectory_joint_v5/common50_hist30_20260923",
+    "sample_rate_hz": 10,
+    "history_seconds": 30,
+    "history_points": 301,
+    "prediction_seconds": 5,
+    "prediction_points": 50,
+    "train_windows": 42850,
+    "validation_windows": 3510,
+    "test_windows_eligible": 3556,
+    "test_windows_total": 3558,
+    "test_ineligible_windows": 2
+  },
+  "model": {
+    "architecture": "trajectory",
+    "temporal_backbone": "mamba2",
+    "temporal_variant": "vanilla",
+    "width": 64,
+    "layers": 2,
+    "heads": 4,
+    "scene_modes": 5,
+    "interaction": true,
+    "joint": true,
+    "joint_variant": "shared",
+    "local_modes": 1,
+    "edge_anchors": 3,
+    "use_edge_geometry": true,
+    "motion_decoder": "acceleration"
+  },
+  "optimization": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "weight_decay_policy": "legacy",
+    "lr_schedule": "linear warmup for 5 epochs followed by cosine decay",
+    "minimum_learning_rate": 0.000001,
+    "warmup_epochs": 5,
+    "batch_size": 32,
+    "epoch_budget": 120,
+    "early_stopping_patience": 20,
+    "samples_per_group": 16,
+    "candidate_score_loss_weight": 0.1,
+    "gradient_clip_max_norm": 1.0,
+    "seed": 17,
+    "device": "cuda",
+    "precision": "float32"
+  },
+  "initialization": {
+    "method": "weights-only warm start",
+    "source": "Stage-1 relational checkpoint (Mamba-2 temporal encoder with relation modelling, joint=False)",
+    "note": "Compatible tensors are loaded from the Stage-1 best checkpoint; optimizer state, RNG state, and epoch count are not restored. Joint response-dimension tensors absent from the Stage-1 checkpoint use their Stage-2 initialization."
+  },
+  "checkpoint_selection": {
+    "rule": "minimum validation family-macro scene-minADE at the 5-second horizon",
+    "horizon_seconds": 5
+  }
+}
